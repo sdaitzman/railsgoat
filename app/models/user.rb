@@ -41,13 +41,10 @@ class User < ApplicationRecord
   def self.authenticate(email, password)
     auth = nil
     user = find_by_email(email)
-    raise "#{email} doesn't exist!" if !(user)
-    if user.password == Digest::MD5.hexdigest(password)
-      auth = user
-    else
-      raise "Incorrect Password!"
+    unless user && user.password == Digest::MD5.hexdigest(password)
+      raise "Username or password is incorrect. Please try again."
     end
-    return auth
+    user
   end
 
   def hash_password
