@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   def administrative
     if !is_admin?
-     redirect_to root_url
+      redirect_to root_url
    end
   end
 
