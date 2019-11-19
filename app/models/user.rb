@@ -6,6 +6,7 @@ class User < ApplicationRecord
                        confirmation: true,
                        length: {within: 6..40},
                        on: :create,
+                       format: {with: /.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=\!]).*/},
                        if: :password
 
   validates_presence_of :email
