@@ -7,11 +7,12 @@ class BenefitFormsController < ApplicationController
 
   def download
    begin
-     path = params[:name]
+     path = File.join('public', 'docs', params[:name])
      file = params[:type].constantize.new(path)
      send_file file, disposition: "attachment"
    rescue
-     redirect_to user_benefit_forms_path(user_id: current_user.id)
+     response_status = { status: 404, notice: "File not found" }
+     redirect_to(user_benefit_forms_path(user_id: current_user.id), response_status)
    end
   end
 
