@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    path = params[:url].present? ? params[:url] : home_dashboard_index_path
+    path = validate_url(params[:url])
     begin
       # Normalize the email address, why not
       user = User.authenticate(params[:email].to_s.strip.downcase, params[:password])
@@ -34,5 +34,12 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token)
     reset_session
     redirect_to root_path
+  end
+
+  def validate_url(path)
+    path = path || home_dashboard_index_path
+    Rails.application.routes.recognize_path(path)
+  rescue ActionController::RoutingError
+    home_dashboard_index_path
   end
 end
