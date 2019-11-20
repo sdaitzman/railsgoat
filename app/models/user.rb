@@ -42,7 +42,7 @@ class User < ApplicationRecord
   def self.authenticate(email, password)
     auth = nil
     user = find_by_email(email)
-    unless user && user.password == Digest::MD5.hexdigest(password)
+    unless user && BCrypt::Password.new(user.password) == password
       raise "Username or password is incorrect. Please try again."
     end
     user
@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   def hash_password
     if will_save_change_to_password?
-      self.password = Digest::MD5.hexdigest(self.password)
+      self.password = BCrypt::Password.create(self.password)
     end
   end
 
