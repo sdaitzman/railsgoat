@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   # Our security guy keep talking about sea-surfing, cool story bro.
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
+  protect_from_forgery
 
   private
+
+  def handle_unverified_request
+    redirect_to root_url and reset_session if current_user
+  end
 
   def mailer_options
     ActionMailer::Base.default_url_options[:protocol] = request.protocol
