@@ -57,3 +57,72 @@ $ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
 # License
 
 [The MIT License (MIT)](./LICENSE.md)
+
+# Helpful Ruby Hints
+Ruby usually gives you 1001 ways to accomplish a task, and the goal of this course is not to master the language. 
+However, this will hopefully be a useful reference or template for basic syntax hints. 
+
+## Functions
+
+```ruby
+def function
+  puts 'Hello World'
+  call_another_function 2  # notice the () are always optional in functions
+  call_another_function(3) # equally valid
+end
+```
+
+## Conditionals
+```ruby
+if true
+  # always executes
+end
+
+unless false
+  # always executes
+end
+```
+
+## Loops
+```ruby
+my_array = [1, 'hello', 2, 'goodbye']
+my_array.each do |element|
+  puts "the next element is #{element}"
+end
+```
+
+## Classes
+```ruby
+class MyClass < ParentClass
+  def initialize
+    @attribute = 'my attribute'
+  end
+
+  def self.static_method
+    # this can be called without initializing the class first
+    # MyClass.static_method
+  end
+
+  def method
+    # regular class method
+    # MyClass.new.method
+  end
+end
+```
+
+## Implicit returns
+```ruby
+def return_true 
+  true
+end
+return_true == true
+
+
+def conditionally_return_true # returns either true or 'bananas'
+  if some_condition
+    true
+  else
+    'bananas'
+  end
+end 
+```
