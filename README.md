@@ -67,8 +67,8 @@ However, this will hopefully be a useful reference or template for basic syntax 
 ```ruby
 def function
   puts 'Hello World'
-  call_another_function 2  # notice the () are always optional in functions
-  call_another_function(3) # equally valid
+  another_function 2  # notice the () are always optional in functions
+  another_function(3) # equally valid
 end
 ```
 
@@ -112,11 +112,9 @@ end
 
 ## Implicit returns
 ```ruby
-def return_true 
+def return_true # returns true
   true
 end
-return_true == true
-
 
 def conditionally_return_true # returns either true or 'bananas'
   if some_condition
@@ -126,3 +124,14 @@ def conditionally_return_true # returns either true or 'bananas'
   end
 end 
 ```
+
+## Symbols
+For simplicity, you can think of symbols as strings (even though technically they're different).
+```ruby
+:symbol || 'symbol' # symbols and strings are similar (ish!)
+```
+They're usually used as key mappings, like a dictionary/hash.
+```ruby
+{ :key => 'value' } # this is the most common use case for symbols
+```
+[Read more](https://www.rubyguides.com/2018/02/ruby-symbols/) about symbols.
